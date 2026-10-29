@@ -6,11 +6,16 @@
 - Accepted English public skill + CLI design with LVSKIHP-only verified support.
 - Scaffolded documentation before implementation; default branch is master.
 - Implementing bounded read-only transport, source timestamps, SQLite and a continuous collector.
+- Implemented allowlisted reads, one-read auth-expiry recovery, failed-login cooldown, locale-independent log dates, freshness, SQLite/WAL/dedup/events/retention and single-writer locking.
+- Offline verification: 21 passed, 1 live test deselected; Ruff passed. Synthetic wheel/sdist exclusion and rebuild checks passed.
+- Opt-in hardware verification: 1 passed. Host-supervised bounded acceptance: 2 successful persisted samples, exit 0, explicit diagnosis opt-out in process metadata.
+- Independent code review and privacy review: PASS after resolving session retry, locale parsing and package selection findings.
+- Host integration uses a continuous 60-second collector. Declaration is persisted; initial bootstrap uses a one-off process launch until the operator's next supervisor restart.
 
 ## Implementation Checklist
-- [ ] Offline tests and lint
-- [ ] Opt-in live hardware checks
-- [ ] Independent code and privacy reviews
+- [x] Offline tests and lint
+- [x] Opt-in live hardware checks
+- [x] Independent code and privacy reviews
 - [ ] CI, protected master, pull request and merge
 - [ ] Private host integration and monitored continuous service
 
