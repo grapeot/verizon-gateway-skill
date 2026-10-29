@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.12
+      - run: uv venv --python 3.12
+      - run: uv pip install -e '.[dev]'
+      - run: .venv/bin/ruff check .
+      - run: .venv/bin/pytest -q -m 'not live'

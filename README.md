@@ -58,6 +58,8 @@ verizon-gateway health --database data/telemetry.sqlite --max-age 180
 
 `monitor` stores data in a local SQLite database outside `src/` (e.g., `data/telemetry.sqlite`) with WAL mode, an adjacent single-writer lock, and 90-day default retention. Supervise long-running collection with your host service manager (`launchd`, `systemd`, etc.); the collector handles `SIGINT`/`SIGTERM` cleanly and records transient failures rather than exiting.
 
+Stored telemetry and exports include radio identifiers and timestamps. They are private operational data, not anonymized sharing reports. Export reads this tool's trusted local database; it is not a sanitizer for imported databases. Monitoring and file locking currently require a POSIX host (macOS or Linux).
+
 ## Installing as an Agent Skill
 
 Hand this repository's GitHub URL to Codex, Claude Code, Cursor, or OpenCode to install. The agent reads your host `AGENTS.md` or `CLAUDE.md` and skill routing index, registers one root skill (`skills/verizon-gateway/SKILL.md`), and stores private aliases, routes, and credential references in a host-owned overlay.
