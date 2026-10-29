@@ -11,13 +11,15 @@
 - Opt-in hardware verification: 1 passed. Host-supervised bounded acceptance: 2 successful persisted samples, exit 0, explicit diagnosis opt-out in process metadata.
 - Independent code review and privacy review: PASS after resolving session retry, locale parsing and package selection findings.
 - Host integration uses a continuous 60-second collector. Declaration is persisted; initial bootstrap uses a one-off process launch until the operator's next supervisor restart.
+- Continuous hardware acceptance: three successful samples at approximately 60-second spacing; 110 deduplicated radio observations; stored-history health and latest radio freshness passed.
+- Public CI passed. Protected master requires the test check and pull requests, zero mandatory approving reviews, and administrator enforcement.
 
 ## Implementation Checklist
 - [x] Offline tests and lint
 - [x] Opt-in live hardware checks
 - [x] Independent code and privacy reviews
-- [ ] CI, protected master, pull request and merge
-- [ ] Private host integration and monitored continuous service
+- [x] CI, protected master and reviewed pull request ready for authorized merge
+- [x] Private host integration and monitored continuous collector (bootstrap until next supervisor restart)
 
 ## Lessons Learned
 - LVSKIHP is a model; the manufacturer is Wistron NeWeb Corporation.
