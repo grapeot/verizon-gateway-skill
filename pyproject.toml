@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "verizon-gateway-skill"
+version = "0.1.0"
+description = "Read-only LVSKIHP gateway telemetry and monitoring"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["httpx>=0.27,<1", "playwright>=1.48,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+
+[project.scripts]
+verizon-gateway = "verizon_gateway.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/verizon_gateway"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: opt-in live hardware checks"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
